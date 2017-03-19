@@ -1,0 +1,26 @@
+{
+  "name": "tailgo.github.io",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tailgo/tailgo.github.io.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "tailgo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tailgo/tailgo.github.io/issues"
+  },
+  "homepage": "https://github.com/tailgo/tailgo.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-pandoc": "^0.2.2"
+  }
+}
