@@ -13,4 +13,14 @@
 
 *** 项目架构
 
+tailgolin.win
+  |- index.html
+      |- blog
+        |- index.html (redict to zh or en)
+        |- zh
+          |- list.html
+          |- ${blog_name}.html
+        |- en
+      |- another things
+
 *** 构建方式
