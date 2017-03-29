@@ -13,14 +13,23 @@
 
 *** 项目架构
 
-tailgolin.win
+|- tailgolin.win
   |- index.html
-      |- blog
-        |- index.html (redict to zh or en)
-        |- zh
-          |- list.html
-          |- ${blog_name}.html
-        |- en
-      |- another things
+  |- blog
+    |- index.html (redict to zh or en)
+    |- zh
+      |- list.html
+      |- ${blog_name}.html
+    |- en
+      |- list.html
+      |- ${blog_name}.html
+  |- src
+    |- stencil.html
+    |- js
+      |- ***.js
+    |- css
+      |- ***.css
 
 *** 构建方式
+
+使用 `gulp-pandoc` 将 `.org` 文件转义成 `.html` 文件，然后再将生成的 `.html` 文件插入到母板文件（`./src/stencil.html`）文件中。这样我们只要把母板的开发工作做好就行了。

@@ -1,0 +1,6 @@
+# -*- mode: org; -*-
+
+#+AUTHOR: tailgo
+#+TITLE: 构建我的个人博客
+
+** use for test
