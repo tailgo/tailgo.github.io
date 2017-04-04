@@ -1,0 +1,19 @@
+#app {
+  height: 100%;
+}
+
+#app .pane-header {
+  white-space: nowrap;
+}
+
+#app .pane-title {
+  font-size: 25px;
+  left: 50px;
+  margin-top: 6px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#app .pane-nav-commands {
+  margin-top: 20px;
+}
