@@ -13,6 +13,7 @@
 
 *** 项目架构
 
+#BEGIN_EXAMPLE
 |- tailgolin.win
   |- index.html
   |- blog
@@ -29,6 +30,7 @@
       |- ***.js
     |- css
       |- ***.css
+#END_EXAMPLE
 
 *** 构建方式
 
