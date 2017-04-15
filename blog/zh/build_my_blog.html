@@ -15,10 +15,23 @@
 <h2 id="构建博客的方案">构建博客的方案</h2>
 <h2 id="开始动手">开始动手</h2>
 <h3 id="项目架构">项目架构</h3>
-<table>
-<tbody>
-</tbody>
-</table>
+<pre class="example"><code>|- tailgolin.win
+  |- index.html
+  |- blog
+    |- index.html (redict to zh or en)
+    |- zh
+      |- list.html
+      |- ${blog_name}.html
+    |- en
+      |- list.html
+      |- ${blog_name}.html
+  |- src
+    |- stencil.html
+    |- js
+      |- ***.js
+    |- css
+      |- ***.css
+</code></pre>
 <h3 id="构建方式">构建方式</h3>
 <p>使用 `gulp-pandoc` 将 `.org` 文件转义成 `.html` 文件，然后再将生成的 `.html` 文件插入到母板文件（`./src/stencil.html`）文件中。这样我们只要把母板的开发工作做好就行了。</p>
 
