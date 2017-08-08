@@ -7,13 +7,13 @@
   <title>Document</title>
 </head>
 <body>
-  <textarea rows="3" id="input">
+  <textarea rows="3" id="input"></textarea>
   <div id="output"></div>
   <script>
     var input = document.getElementById('input');
     var output = document.getElementById('output');
     input.addEventListener('input', function() {
-      output.innerText = this.value;
+      output.innerText = this.innerHTML;
     });
   </script>
 </body>
