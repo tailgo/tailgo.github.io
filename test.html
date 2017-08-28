@@ -12,9 +12,7 @@
   <script>
     var input = document.getElementById('input');
     var output = document.getElementById('output');
-    input.addEventListener('input', function() {
-      output.innerText = this.innerHTML;
-    });
+    output.innerHTML = typeof Math.random() + '  /  ' + (Math.random() > 0.5);
   </script>
 </body>
 </html>
