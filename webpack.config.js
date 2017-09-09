@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const config = {
   entry: ["./src/app.tsx"],
@@ -18,6 +19,10 @@ const config = {
       loader: "awesome-typescript-loader",
       exclude: /node_modules/
     }]
+  },
+
+  devServer: {
+    contentBase: './'
   }
 };
 
