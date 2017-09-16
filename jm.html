@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>With J.M.</title>
+</head>
+<body>
+  <p>
+    Fall in love with J.M. has been
+    <span id="time-str"></span>
+  </p>
+  <script>
+    var START_DATE = new Date('2017/09/15 21:15:00+0800');
+
+    var $span = document.getElementById('time-str');
+
+    function timer() {
+      var now = Date.now();
+      var day = 0, hours = 0, minutes = 0, seconds = 0;
+      var delta = now - START_DATE;
+      var timeStr = '';
+      if (delta > 86400000) {
+        day = ~~(delta / 86400000);
+        delta = delta % 86400000;
+      }
+      timeStr += day + ' day(s),';
+      if (delta > 3600000) {
+        hours = ~~(delta / 3600000);
+        delta = delta % 3600000;
+      }
+      timeStr += hours + ' hour(s),';
+
+      if (delta > 60000) {
+        minutes = ~~(delta / 60000);
+        delta = delta % 60000;
+      }
+      timeStr += minutes + ' minute(s),';
+
+      seconds = ~~(delta / 1000);
+      timeStr += seconds + ' second(s).';
+
+      $span.innerHTML = timeStr;
+    }
+    timer();
+    setInterval(function () {
+      timer();
+    }, 1000);
+  </script>
+</body>
+</html>
