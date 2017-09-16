@@ -8,7 +8,7 @@
 </head>
 <body>
   <p>
-    Fall in love with J.M. has been
+    Fall in love with J.M. has been<br>
     <span id="time-str"></span>
   </p>
   <script>
@@ -25,18 +25,18 @@
         day = ~~(delta / 86400000);
         delta = delta % 86400000;
       }
-      timeStr += day + ' day(s),';
+      timeStr += day + ' day(s),<br>';
       if (delta > 3600000) {
         hours = ~~(delta / 3600000);
         delta = delta % 3600000;
       }
-      timeStr += hours + ' hour(s),';
+      timeStr += hours + ' hour(s),<br>';
 
       if (delta > 60000) {
         minutes = ~~(delta / 60000);
         delta = delta % 60000;
       }
-      timeStr += minutes + ' minute(s),';
+      timeStr += minutes + ' minute(s),<br>';
 
       seconds = ~~(delta / 1000);
       timeStr += seconds + ' second(s).';
