@@ -38,3 +38,6 @@ jspm_packages
 
 # Mid product
 htmls
+
+# editor
+.vs

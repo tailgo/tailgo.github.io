@@ -8,3 +8,7 @@ My Site.
  - React-router
  - Webpack
  - Material-ui
+
+## Run
+
+    npm run dev
