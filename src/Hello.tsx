@@ -37,8 +37,8 @@ class Hello extends React.Component<HelloProps, HelloState> {
   render() {
     return (
       <div>
-        <div>Hello, {this.props.name}</div>
-        <div>Now is {this.state.date.toLocaleTimeString()}</div>
+        <div>Hello, { this.props.name }</div>
+        <div>Now is { this.state.date.toLocaleTimeString() }</div>
       </div>
     );
   }
