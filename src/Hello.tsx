@@ -10,7 +10,7 @@ interface HelloState {
 
 class Hello extends React.Component<HelloProps, HelloState> {
 
-  public timerID: number;
+  public timerID: NodeJS.Timer;
 
   constructor(props: HelloProps) {
     super(props);
