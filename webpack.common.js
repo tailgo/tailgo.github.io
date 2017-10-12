@@ -1,5 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -20,11 +21,24 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextWebpackPlugin.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          }],
+          fallback: 'style-loader'
+        }),
       }
     ]
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextWebpackPlugin('style.css')
   ]
 };
