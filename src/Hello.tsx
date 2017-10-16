@@ -10,7 +10,7 @@ interface HelloState {
 
 class Hello extends React.Component<HelloProps, HelloState> {
 
-  public timerID: NodeJS.Timer;
+  public timerID: number;
 
   constructor(props: HelloProps) {
     super(props);
@@ -20,14 +20,14 @@ class Hello extends React.Component<HelloProps, HelloState> {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
+    this.timerID = Number(setInterval(
       () => {
         this.setState({
           date: new Date()
         });
       },
       1000
-    );
+    ));
   }
 
   componentWillUnmount() {

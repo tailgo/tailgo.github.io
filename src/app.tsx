@@ -1,13 +1,21 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Hello from './Hello';
+import { HashRouter as Router } from 'react-router-dom';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import Main from './Main';
+
+import './style/reset.css';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <Hello name="tailgo"></Hello>
-      </div>
+      <MuiThemeProvider>
+        <Router>
+          <Main />
+        </Router>
+      </MuiThemeProvider>
     );
   }
 }

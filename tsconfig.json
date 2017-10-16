@@ -6,7 +6,11 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "removeComments": true
+    "removeComments": true,
+    "lib": [
+      "dom",
+      "es6"
+    ]
   },
   "exclude": [
     "node_modules"
