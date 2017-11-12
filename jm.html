@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>With J.M.</title>
   <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    }
     .container {
       position: absolute;
       top: 0;
@@ -51,19 +54,20 @@
     .day ul {
       margin: 0 auto;
       padding: 0;
-      display: flex;
       list-style: none;
       width: 75%;
       max-width: 300px;
+      overflow: hidden;
     }
     .day ul li {
-      flex: auto;
+      float: left;
       text-align: center;
       line-height: 80px;
       font-size: 80px;
       color: #fff;
     }
     .day ul .day-unit {
+      float: right;
       margin: 0;
       padding-top: 50px;
       color: #fff;
@@ -131,15 +135,13 @@
 <body>
   <div class="container">
 
-    <div class="ball-layer" id="ball-container">
-      <!-- <div class="float-ball" style="background: #E65100; left:70%"></div> -->
-    </div>
+    <div class="ball-layer" id="ball-container"></div>
 
     <!-- Fall in love with J.M. has been<br> -->
     <div class="text-layer">
       <div class="time-str" id="time-str">
         <div class="day" id="day">
-          <ul>
+          <ul id="day-ul">
             <p class="day-unit">天</p>
           </ul>
         </div>
@@ -151,9 +153,10 @@
 
     <div class="text-layer">
       <div class="bottom-text" id="text-str">
-        愿今后的每一次呼吸
+        <!-- 愿今后的每一次呼吸
         <br>
-        我们依然纯洁又浪漫
+        我们依然纯洁又浪漫 -->
+        陪伴是最长期的告白
       </div>
     </div>
 
@@ -178,16 +181,19 @@
     }
   </script>
   <script>
-    var $day = document.getElementById('day');
-    var $unit = $day.querySelector('.day-unit');
+    var $dayUL = document.getElementById('day-ul');
+    var $unit = $dayUL.querySelector('.day-unit');
     function initDayComp(day) {
       var str = String(day);
-      str = str.padStart(4, '0');
+      // str = str.padStart(4, '0');
       var r = '';
-      for (var i = 0; i < 4; ++i) {
+      for (var i = 0; i < str.length; ++i) {
         r += '<li>' + str[i] + '</li>';
       }
-      $day.children[0].innerHTML = r += $unit.outerHTML;
+      $dayUL.innerHTML = r += $unit.outerHTML;
+
+      let paddingLeft = ($dayUL.offsetWidth - ($dayUL.children[0].offsetWidth * str.length)) / 2;
+      $dayUL.children[0].style.paddingLeft = paddingLeft + 'px';
     }
   </script>
   <script>
@@ -222,10 +228,10 @@
         minutes = ~~(delta / 60000);
         delta = delta % 60000;
       }
-      timeStr += String(minutes).padStart(2, '0') + ':';
+      timeStr += String(minutes).padStart(2, '0') + '\'';
 
       seconds = ~~(delta / 1000);
-      timeStr += String(seconds).padStart(2, '0');
+      timeStr += String(seconds).padStart(2, '0') + '"';
 
       $span.innerHTML = timeStr;
     }
