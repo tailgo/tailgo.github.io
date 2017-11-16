@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import ActionHome from 'material-ui/svg-icons/action/home';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+
 import AppBar from 'material-ui/AppBar';
 import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import Divider from 'material-ui/Divider';
@@ -13,6 +15,7 @@ import Drawer from 'material-ui/Drawer';
 import { List, ListItem } from 'material-ui/List';
 
 import Hello from './Hello';
+import Light2D from './toys/light2d/light2d';
 
 interface IMainProps {
 
@@ -24,8 +27,8 @@ interface IMainState {
 
 export default class Main extends React.Component<IMainProps, IMainState> {
 
-  constructor() {
-    super();
+  constructor(props: IMainProps, state: IMainState) {
+    super(props, state);
     this.state = {
       open: false
     };
@@ -58,6 +61,9 @@ export default class Main extends React.Component<IMainProps, IMainState> {
             <NavLink to="/">
               <ListItem primaryText="Home" leftIcon={<ActionHome/>} />
             </NavLink>
+            <NavLink to="/toys">
+              <ListItem primaryText="Toys" leftIcon={<ActionGrade/>}/>
+            </NavLink>
           </List>
           <Divider />
           <List>
@@ -68,7 +74,8 @@ export default class Main extends React.Component<IMainProps, IMainState> {
             />
           </List>
         </Drawer>
-        <Route path="/" component={Hello}/>
+        <Route exact path="/" component={Hello}/>
+        <Route path="/toys" component={Light2D}/>
       </div>
     );
   }
