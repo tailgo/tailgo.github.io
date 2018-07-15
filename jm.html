@@ -2,292 +2,200 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name=”x5-fullscreen” content=”true”>
   <title>A Te</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      height: 100%;
+      font-size: 100px;
+    }
     body {
-      font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+      height: 100%;
     }
     .container {
+      position: relative;
+      height: 100%;
+    }
+    .bg-cover {
+      height: 100%;
+      background-image: url(./assets/tl.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-cover::after {
+      content: ' ';
+      display: block;
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-      overflow: hidden;
-      background: #FFD600;
-      animation: breathe 4s linear 0s infinite;
+      opacity: .6;
+      background-color: #030303;
     }
-    .ball-layer {
+
+    .msg-box, .desc-box {
       position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-    .text-layer {
-      position: relative;
-      z-index: 99;
-    }
-    .float-ball {
-      position: absolute;
-      animation: float 3s ease-in-out;
+      top: 0;
       bottom: 0;
-      width: 6px;
-      height: 6px;
-      border-radius: 100%;
-      opacity: 1;
-
-      transition: all 3s ease-in-out;
-    }
-
-    .float-ball-after {
-      bottom: 110%;
-      width: 120px;
-      height: 120px;
-      opacity: 0.2;
-    }
-
-    /* day and time style */
-    .time-str {
-      padding-top: 50px;
-    }
-    .day ul {
-      margin: 0 auto;
-      padding: 0;
-      list-style: none;
-      width: 75%;
-      max-width: 300px;
-      overflow: hidden;
-    }
-    .day ul li {
-      float: left;
-      text-align: center;
-      line-height: 80px;
-      font-size: 80px;
-      color: #fff;
-    }
-    .day ul .day-unit {
-      float: right;
-      margin: 0;
-      padding-top: 50px;
-      color: #fff;
-    }
-
-    .time {
-      width: 75%;
-      max-width: 300px;
-      margin: 0 auto;
-      color: #fff;
-      text-align: center;
-    }
-    .time span {
-      font-size: 50px;
-    }
-
-    .bottom-text {
-      position: fixed;
-      bottom: 72px;
       width: 100%;
-      height: 36px;
-      text-align: center;
+      max-width: 640px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .msg {
+      display: none;
+      padding: .2rem;
+      font-size: .16rem;
+      overflow: hidden;
+      position: relative;
+      -webkit-animation: msg-1 .6s ease-in-out;
+      animation: msg-1 .6s ease-in-out;
+    }
+    .msg.left > div {
+      float: left;
+    }
+    .msg.right > div {
+      float: right;
+    }
+    .msg .msg-avatar {
+      width: .4rem;
+      height: .4rem;
+      border-radius: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .msg .msg-avatar.jm {
+      background-image: url(./assets/avatar_jm.jpeg);
+    }
+    .msg .msg-avatar.tailgo {
+      background-image: url(./assets/avatar_tailgo.jpeg);
+    }
+    .msg.left .msg-avatar {
+      margin-right: .2rem;
+    }
+    .msg.right .msg-avatar {
+      margin-left: .2rem;
+    }
+    .msg .msg-content {
+      position: relative;
+      padding: .1rem;
+      background-color: #fff;
+      border-radius: .04rem;
+    }
+    .msg.left .msg-content::before {
+      content: ' ';
+      display: block;
+      float: left;
+      position: absolute;
+      left: -.1rem;
+      width: 0;
+      height: 0;
+      border: .1rem solid transparent;
+      border-right-color: #fff;
+      border-left: 0;
+    }
+    .msg.right .msg-content::before {
+      content: ' ';
+      display: block;
+      float: right;
+      position: absolute;
+      right: -.1rem;
+      width: 0;
+      height: 0;
+      border: .1rem solid transparent;
+      border-left-color: #fff;
+      border-right: 0;
+    }
+
+    .desc-box {
+      top: unset;
+      display: -webkit-flex;
+      display: flex;
+      padding: .2rem;
+      font-size: .16rem;
       color: #fff;
-      font-size: 24px;
-      line-height: 36px;
+      -webkit-animation: fadeIn .6s ease-in-out;
+      animation: fadeIn .6s ease-in-out;
+    }
+    .desc-box .day-comp {
+      font-size: .64rem;
+    }
+    .desc-box .desc-comp {
+      position: relative;
+      margin-left: .08rem;
+      padding: .08rem;
+    }
+    .desc-box .desc-comp .desc {
+      font-size: .22rem;
+    }
+    .desc-box .desc-comp .timer {
+      position: absolute;
+      bottom: .12rem;
+      font-size: .2rem;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateX(0);
-      }
-      20% {
-        transform: translateX(40px);
-      }
-      60% {
-        transform: translateX(-80px);
-      }
-      100% {
-        transform: translateX(0);
+    @keyframes msg-1 {
+      from {
+        opacity: 0;
+        top: .2rem
+      } to {
+        opacity: 1;
+        top: 0
       }
     }
-
-    @keyframes breathe {
-      0% {
-        background: #FFD600;
-      }
-      5% {
-        background: #FFD600;
-      }
-      38% {
-        background: #FF6D00;
-      }
-      45% {
-        background: #FF6D00;
-      }
-      95% {
-        background: #FFD600;
-      }
-      100% {
-        background: #FFD600;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      } to {
+        opacity: 1;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
 
-    <div class="ball-layer" id="ball-container"></div>
+    <div class="bg-cover"></div>
 
-    <!-- Fall in love with J.M. has been<br> -->
-    <div class="text-layer">
-      <div class="time-str" id="time-str">
-        <div class="day" id="day">
-          <ul id="day-ul">
-            <p class="day-unit">天</p>
-          </ul>
-        </div>
-        <div class="time" id="time">
-          <span>19:02:02</span>
+    <div class="msg-box">
+      <div class="msg left">
+        <div class="msg-avatar jm"></div>
+        <div class="msg-content">
+          你是傻逼吗？
         </div>
       </div>
-
-      <div style="text-align: center; color: #fff; line-height: 80px; font-size: 1.6rem">
-        跟洁漫在一起已经
+      <div class="msg right">
+        <div class="msg-avatar tailgo"></div>
+        <div class="msg-content">
+          不！我是傻小弟！
+        </div>
       </div>
-
     </div>
 
-    <div class="text-layer">
-      <div class="bottom-text" id="text-str">
-        <!-- 愿今后的每一次呼吸
-        <br>
-        我们依然纯洁又浪漫 -->
-        <!-- 陪伴是最长情的告白 -->
-        Wish You Were Here
-        <br>
-        I Will Always Be Here
+    <div class="desc-box" style="display: none; opacity: 0;">
+      <div class="comp day-comp" id="day"></div>
+      <div class="comp desc-comp">
+        <div class="desc">
+          成为领导的傻小弟已经
+        </div>
+        <div class="timer">
+          <span class="unit">天，</span>
+          <span class="time" id="time"></span>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- <script>
-    if (!String.prototype.padStart) {
-      String.prototype.padStart = function padStart(targetLength, padString) {
-        targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
-        padString = String(padString || ' ');
-        if (this.length > targetLength) {
-          return String(this);
-        }
-        else {
-          targetLength = targetLength - this.length;
-          if (targetLength > padString.length) {
-            padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
-          }
-          return padString.slice(0, targetLength) + String(this);
-        }
-      };
-    }
-  </script>
-  <script>
-    var $dayUL = document.getElementById('day-ul');
-    var $unit = $dayUL.querySelector('.day-unit');
-    function initDayComp(day) {
-      var str = String(day);
-      // str = str.padStart(4, '0');
-      var r = '';
-      for (var i = 0; i < str.length; ++i) {
-        r += '<li>' + str[i] + '</li>';
-      }
-      $dayUL.innerHTML = r += $unit.outerHTML;
-
-      let paddingLeft = ($dayUL.offsetWidth - ($dayUL.children[0].offsetWidth * str.length)) / 2;
-      $dayUL.children[0].style.paddingLeft = paddingLeft + 'px';
-    }
-  </script>
-  <script>
-    var START_DATE = new Date('2017/09/15 21:15:00+0800');
-
-    var $span = document.getElementById('time').children[0];
-
-    var oday, ohours, ominutes;
-
-    function timer() {
-      var now = Date.now();
-      var day = 0, hours = 0, minutes = 0, seconds = 0;
-      var delta = now - START_DATE;
-      var timeStr = '';
-      if (delta > 86400000) {
-        day = ~~(delta / 86400000);
-        delta = delta % 86400000;
-      }
-
-      if (oday !== day) {
-        initDayComp(day);
-        oday = day;
-      }
-
-      if (delta > 3600000) {
-        hours = ~~(delta / 3600000);
-        delta = delta % 3600000;
-      }
-      timeStr += String(hours).padStart(2, '0') + ':';
-
-      if (delta > 60000) {
-        minutes = ~~(delta / 60000);
-        delta = delta % 60000;
-      }
-      timeStr += String(minutes).padStart(2, '0') + '\'';
-
-      seconds = ~~(delta / 1000);
-      timeStr += String(seconds).padStart(2, '0') + '"';
-
-      $span.innerHTML = timeStr;
-    }
-    timer();
-    setInterval(function () {
-      timer();
-    }, 1000);
-  </script>
-  <script>
-    var COLOR_SET = [
-      '#00BFA5',
-      '#00B8D4',
-      '#FF1744',
-      '#CDDC39',
-      '#DD2C00',
-      '#FFCC80',
-      '#FF6F00'
-    ];
-    var $ballContainer = document.getElementById('ball-container');
-    function makeBall() {
-      var i = COLOR_SET[0];
-      COLOR_SET = COLOR_SET.sort(function () {
-        return Math.random() > 0.5 ? 1 : -1;
-      });
-      var $ball = document.createElement('div');
-      $ball.className = 'float-ball'
-      $ball.style.backgroundColor = i;
-      $ball.style.left = ~~(Math.random() * 70 + 10) + '%';
-      return $ball;
-    }
-
-    function showBall() {
-      var ball = makeBall();
-      $ballContainer.appendChild(ball);
-      setTimeout(function () {
-        ball.className += ' float-ball-after';
-        setTimeout(function () {
-          ball.remove();
-        }, 3000);
-      }, 100);
-    }
-
-    setTimeout(function () {
-      showBall();
-      setTimeout(arguments.callee, 1000);
-    }, 1000);
-  </script> -->
-  <script type="text/javascript" src="./jm.js"></script>
+  <script type="text/javascript" src="./jm-new.js"></script>
 </body>
 </html>
