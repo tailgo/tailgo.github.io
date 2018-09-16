@@ -79,8 +79,8 @@ function showDesc(className) {
   }, 1000);
 }
 
-showMsg('.left', function () {
-  showMsg('.right', function () {
+showMsg('.right', function () {
+  showMsg('.left', function () {
     showDesc('.desc-box', function () {});
   });
 });
